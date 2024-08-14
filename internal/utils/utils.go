@@ -166,7 +166,7 @@ func GetPriortiyInt(prio string) int {
 }
 
 func Escape(s string) string {
-	s = strings.ReplaceAll(s, ".", `\.`)
+	s = strings.ReplaceAll(s, ".", `/.`)
 	// s = strings.ReplaceAll(s, ",", "\\,")
 	s = strings.ReplaceAll(s, "<", "\\<")
 	s = strings.ReplaceAll(s, ">", "\\>")
