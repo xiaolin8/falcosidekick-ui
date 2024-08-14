@@ -86,12 +86,12 @@ frontend:
 	&& yarn build
 
 .PHONY: falcosidekick-ui
-falcosidekick-ui: frontend
+falcosidekick-ui:
 	$(GO) mod download
 	$(GO) build -trimpath -ldflags "$(LDFLAGS)" -o falcosidekick-ui .
 
 .PHONY: falcosidekick-ui-linux-amd64
-falcosidekick-ui-linux-amd64: frontend
+falcosidekick-ui-linux-amd64:
 	$(GO) mod download
 	GOOS=linux GOARCH=amd64 $(GO) build -gcflags all=-trimpath=/src -asmflags all=-trimpath=/src -a -installsuffix cgo -o falcosidekick-ui .
 
@@ -100,7 +100,7 @@ falcosidekick-ui-backend-only:
 	$(GO) mod download
 	$(GO) build -trimpath -ldflags "$(LDFLAGS)" -o falcosidekick-ui .
 
-.PHONY: falcosidekick-ui-linux-amd64-backend-only
+#.PHONY: falcosidekick-ui-linux-amd64-backend-only
 falcosidekick-ui-linux-amd64:
 	$(GO) mod download
 	GOOS=linux GOARCH=amd64 $(GO) build -gcflags all=-trimpath=/src -asmflags all=-trimpath=/src -a -installsuffix cgo -o falcosidekick-ui .

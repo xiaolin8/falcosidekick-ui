@@ -31,9 +31,6 @@ import (
 	validator "github.com/go-playground/validator/v10"
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	echoSwagger "github.com/swaggo/echo-swagger"
-
-	_ "github.com/falcosecurity/falcosidekick-ui/docs"
 )
 
 type CustomValidator struct {
@@ -149,10 +146,6 @@ func main() {
 	utils.WriteLog("info", fmt.Sprintf("Falcosidekick UI is listening on %v:%v", config.ListenAddress, config.ListenPort))
 	utils.WriteLog("info", fmt.Sprintf("Log level is %v", config.LogLevel))
 
-	e.GET("/docs/*", echoSwagger.WrapHandler)
-	e.GET("/docs", func(c echo.Context) error {
-		return c.Redirect(http.StatusPermanentRedirect, "docs/")
-	})
 	e.Static("/*", "frontend/dist").Name = "webui-home"
 	e.POST("/", api.AddEvent).Name = "add-event" // for compatibility with old Falcosidekicks
 

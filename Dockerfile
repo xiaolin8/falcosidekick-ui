@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=alpine:3.15
+ARG BASE_IMAGE=10.56.184.75:8000/system_containers/alpine:3.20
 
 # Final Docker image
 FROM ${BASE_IMAGE} AS final-stage
