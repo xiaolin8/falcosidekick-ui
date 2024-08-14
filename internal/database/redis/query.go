@@ -52,7 +52,7 @@ func newQuery(args *models.Arguments) string {
 	if args.Hostname != "" {
 		r := strings.Split(utils.Escape(args.Hostname), ",")
 		for i, j := range r {
-			r[i] = fmt.Sprintf("@hostname:%v", j)
+			r[i] = fmt.Sprintf("@hostname:\"%v\"", j)
 		}
 		hostname = fmt.Sprintf("(%v) ", strings.Join(r, " | "))
 	}
