@@ -16,6 +16,7 @@ package redis
 
 import (
 	"encoding/json"
+	"github.com/falcosecurity/falcosidekick-ui/internal/utils"
 
 	"github.com/Issif/redisearch-go/redisearch"
 	"github.com/falcosecurity/falcosidekick-ui/internal/models"
@@ -34,6 +35,12 @@ func SearchKey(client *redisearch.Client, args *models.Arguments) (models.Result
 		if err := json.Unmarshal([]byte(i.Properties["json"].(string)), &e); err != nil {
 			return models.Results{}, err
 		}
+		if val, ok := utils.RuleChinese[e.Rule]; ok {
+			e.Rule = val
+		}
+		//if val, ok := utils.RuleDescChinese[e.Rule]; ok {
+		//	e.Rule = val
+		//}
 		evts = append(evts, e)
 	}
 	r.Results = evts

